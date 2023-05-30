@@ -1,12 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import Layout from "../layout/Layout";
-import Home from "../Pages/Home/Home";
-import Results from "../Pages/Results/Results";
-import Movies from "../Pages/Movies/Movies";
+import Home from "../pages/Home/Home";
+import Results from "../pages/Results/Results";
+import Movies from "../pages/Movies/Movies";
 import Series from "../pages/Series/Series";
 import Bookmarked from "../pages/Bookmarked/Bookmarked";
-import Root from "../Root";
 
 export const router = createBrowserRouter([
   {
