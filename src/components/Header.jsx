@@ -8,7 +8,7 @@ import { ReactComponent as IconNavSeries } from "../assets/icon-nav-tv-series.sv
 import { ReactComponent as IconNavBookmark } from "../assets/icon-nav-bookmark.svg";
 import imgAvatar from "../assets/image-avatar.png";
 
-import { media, marginRight } from "../Styled-components/GlobalStyles";
+import { media } from "../Styled-components/GlobalStyles";
 
 const StyledHeader = styled.header`
   width: 96px;

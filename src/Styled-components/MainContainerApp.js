@@ -18,7 +18,3 @@ export const MainContainerApp = styled.div`
     padding: 0px 0px 23px 0px;
   }
 `;
-
-export const MainContainer = styled.div``;
-
-export const ContentContainer = styled.section``;
