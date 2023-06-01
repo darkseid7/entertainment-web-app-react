@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { media, paddingRight } from "../Styled-components/GlobalStyles";
 import iconSeach from "../assets/icon-search.svg";
+import { useEffect, useState } from "react";
 
 const StyledSearchInput = styled.div`
   width: 100%;
@@ -63,10 +65,29 @@ const Input = styled.input`
 `;
 
 function SearchInput() {
+  const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation().pathname.split("/");
+
+  const handleSearch = (e) => {
+    debugger;
+    console.log(location);
+    if (e.target.value.length != 0) {
+      navigate(`/results/${e.target.value}`);
+    } else {
+      navigate("/");
+    }
+  };
+
   return (
     <StyledSearchInput>
       <SearchIcon src={iconSeach} alt="" />
-      <Input type="text" placeholder="Search for movies or TV series" />
+      <Input
+        type="text"
+        // value={searchText}
+        onChange={handleSearch}
+        placeholder="Search for movies or TV series"
+      />
     </StyledSearchInput>
   );
 }

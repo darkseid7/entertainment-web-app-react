@@ -23,14 +23,8 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: "/results",
+        path: "/results/:title",
         element: <Results />,
-        // children: [
-        //   {
-        //     path: "/results/:title",
-        //     element: <Results />,
-        //   },
-        // ],
       },
       {
         path: "/series",
