@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useRef } from "react";
+import anime from "animejs";
 import styled, { css } from "styled-components";
 
 import { media } from "../Styled-components/GlobalStyles";
@@ -126,9 +128,22 @@ const CardTitle = styled.span`
 function Card({ cardData, cardIndex }) {
   const { isBookmarked, year, category, rating, title } = cardData;
   const { regular } = cardData.thumbnail;
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const cardElement = cardRef.current;
+
+    anime({
+      targets: cardElement,
+      opacity: [0, 1],
+      translateY: [100, 0],
+      delay: anime.stagger(100),
+      easing: "easeOutExpo",
+    });
+  }, []);
 
   return (
-    <StyledCard key={cardIndex}>
+    <StyledCard ref={cardRef} key={cardIndex}>
       <CardContainer>
         <CardThumbnailContainer>
           <CardThumbnail src={regular.small} alt="CardThumbnail" />

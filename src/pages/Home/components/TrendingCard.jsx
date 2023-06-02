@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
+import anime from "animejs";
 
 import { media } from "../../../Styled-components/GlobalStyles";
 import { ReactComponent as MovieSvg } from "../../../assets/icon-category-movie.svg";
@@ -149,9 +151,22 @@ const CardTitle = styled.span`
 function TrendingCard({ cardData, index }) {
   const { isBookmarked, year, category, rating, title } = cardData;
   const { trending } = cardData.thumbnail;
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const slideWidth = cardRef.current.offsetWidth;
+
+    anime({
+      targets: cardRef.current,
+      translateX: [-slideWidth, 0],
+      opacity: [0, 1],
+      easing: "easeOutExpo",
+      duration: 1000,
+    });
+  }, []);
 
   return (
-    <StyledTrendingCard key={index}>
+    <StyledTrendingCard ref={cardRef} key={index}>
       <CardContainer>
         <CardThumbnailContainer>
           <CardThumbnail src={trending.large} alt="" />
