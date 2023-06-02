@@ -65,15 +65,11 @@ const Input = styled.input`
 `;
 
 function SearchInput() {
-  const [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
-  const location = useLocation().pathname.split("/");
 
   const handleSearch = (e) => {
-    debugger;
-    console.log(location);
     if (e.target.value.length != 0) {
-      navigate(`/results/${e.target.value}`);
+      navigate(`/${e.target.value}`);
     } else {
       navigate("/");
     }
@@ -84,7 +80,6 @@ function SearchInput() {
       <SearchIcon src={iconSeach} alt="" />
       <Input
         type="text"
-        // value={searchText}
         onChange={handleSearch}
         placeholder="Search for movies or TV series"
       />

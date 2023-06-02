@@ -1,6 +1,5 @@
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import Recommend from "../Home/components/Recommend";
+
 import CardList from "../../components/CardList";
 import Card from "../../components/Card";
 import useFetch from "../../hooks/useFetch";
@@ -17,7 +16,7 @@ function Results() {
   return (
     <CardList>
       {filteredData.map((cardData, cardIndex) => (
-        <Card key={cardIndex} cardData={cardData} imgUrl={} />
+        <Card key={cardIndex} cardData={cardData} />
       ))}
     </CardList>
   );
