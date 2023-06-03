@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import { useAuth } from "../context/Auth";
@@ -166,7 +166,9 @@ function Header() {
           )} */}
         </IconsContainer>
         <IconsContainer>
-          <StyledAvatarImg src={imgAvatar} alt="" />
+          <Link to="/signup">
+            <StyledAvatarImg src={imgAvatar} alt="" />
+          </Link>
         </IconsContainer>
       </StyledNav>
     </StyledHeader>
