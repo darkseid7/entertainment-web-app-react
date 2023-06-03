@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+import { useAuth } from "../context/Auth";
 import { ReactComponent as IconNavLogo } from "../assets/logo.svg";
 import { ReactComponent as IconNavHome } from "../assets/icon-nav-home.svg";
 import { ReactComponent as IconNavMovies } from "../assets/icon-nav-movies.svg";
@@ -130,6 +131,8 @@ const StyledAvatarImg = styled.img`
 `;
 
 function Header() {
+  const user = useAuth();
+  console.log(user);
   return (
     <StyledHeader>
       <StyledNav>
@@ -139,31 +142,28 @@ function Header() {
           </StyledHomeSvg>
         </NavLink>
         <IconsContainer>
-          {/* <StyledHomeImg src={iconNavLogo} alt="" /> */}
           <NavLink to={"/home"}>
             <StyledSvg>
               <IconNavHome />
             </StyledSvg>
-            {/* <StyledImg src={IconNavHome} alt="" /> */}
           </NavLink>
           <NavLink to={"/movies"}>
             <StyledSvg>
               <IconNavMovies />
             </StyledSvg>
-            {/* <StyledImg src={iconNavMovies} alt="" /> */}
           </NavLink>
           <NavLink to={"/series"}>
             <StyledSvg>
               <IconNavSeries />
             </StyledSvg>
-            {/* <StyledImg src={iconNavSeries} alt="" /> */}
           </NavLink>
-          <NavLink to={"/bookmarked"}>
-            <StyledSvg>
-              <IconNavBookmark />
-            </StyledSvg>
-            {/* <StyledImg src={iconNavBookmark} alt="" /> */}
-          </NavLink>
+          {/* {login && (
+            <NavLink to={"/bookmarked"}>
+              <StyledSvg>
+                <IconNavBookmark />
+              </StyledSvg>
+            </NavLink>
+          )} */}
         </IconsContainer>
         <IconsContainer>
           <StyledAvatarImg src={imgAvatar} alt="" />

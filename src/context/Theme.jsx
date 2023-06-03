@@ -1,8 +1,10 @@
 import { useState } from "react";
-import Theme from "../context/Theme";
+import { createContext } from "react";
 import { ThemeProvider } from "styled-components";
 
-function ThemeContext({ children }) {
+export const Theme = createContext();
+
+export function ThemeContext({ children }) {
   const [theme, setTheme] = useState("default");
   const themes = {
     default: {
@@ -23,5 +25,3 @@ function ThemeContext({ children }) {
     </Theme.Provider>
   );
 }
-
-export default ThemeContext;

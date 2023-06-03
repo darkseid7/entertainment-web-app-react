@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import Login from "../pages/Login/Login";
+import SingUP from "../pages/SignUp/SingUP";
 import Layout from "../layout/Layout";
 import Home from "../pages/Home/Home";
 import Results from "../pages/Results/Results";
@@ -41,7 +42,12 @@ export const router = createBrowserRouter([
     ],
   },
   {
+    index: true,
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <SingUP />,
   },
 ]);

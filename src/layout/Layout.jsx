@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 
 import { GlobalStyles } from "../Styled-components/GlobalStyles";
 import { MainContainerApp } from "../Styled-components/MainContainerApp";
+import { useAuth } from "../context/Auth";
 
 import Header from "../components/Header";
 import SearchInput from "../components/SearchInput";
@@ -12,7 +13,8 @@ import { LayoutContainer } from "./styled-components/LayoutContainer";
 
 function Layout() {
   const { loading } = useFetch();
-  debugger;
+  // console.log(user);
+
   if (loading)
     return (
       <>
