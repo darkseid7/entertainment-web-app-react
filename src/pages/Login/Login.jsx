@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 import { GlobalStyles } from "../../Styled-components/GlobalStyles.js";
 
@@ -8,7 +9,7 @@ import { StyledTitle } from "../../Styled-components/Title.js";
 import { media } from "../../Styled-components/GlobalStyles.js";
 import Form from "../../components/Form.jsx";
 
-const StyledLogin = styled.main`
+const StyledLogin = styled(motion.main)`
   display: grid;
   place-items: center;
   height: 100%;
@@ -64,7 +65,10 @@ function Login() {
   return (
     <>
       <GlobalStyles />
-      <StyledLogin>
+      <StyledLogin
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
         <Logo>
           <IconNavLogo />
         </Logo>

@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import { GlobalStyles } from "../Styled-components/GlobalStyles";
 import { MainContainerApp } from "../Styled-components/MainContainerApp";
@@ -25,7 +26,7 @@ function Layout() {
   return (
     <>
       <GlobalStyles />
-      <MainContainerApp>
+      <MainContainerApp exit={{ opacity: 0, y: -100 }}>
         <Header />
         <LayoutContainer>
           <SearchInput />

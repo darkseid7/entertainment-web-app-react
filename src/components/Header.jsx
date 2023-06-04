@@ -29,9 +29,9 @@ const StyledHeader = styled.header`
     width: 100%;
     padding: 16px;
     border-radius: 0;
-    position: fixed;
+    /* position: fixed;
     top: 0px;
-    z-index: 1000;
+    z-index: 1000; */
   }
 `;
 

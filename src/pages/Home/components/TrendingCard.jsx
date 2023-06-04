@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
-import anime from "animejs";
+import { motion, useAnimation } from "framer-motion";
 
 import { media } from "../../../Styled-components/GlobalStyles";
 import { ReactComponent as MovieSvg } from "../../../assets/icon-category-movie.svg";
@@ -10,7 +10,7 @@ import { ReactComponent as IconPlay } from "../../../assets/icon-play.svg";
 
 import SaveBookmark from "../../../components/SaveBookmark";
 
-const StyledTrendingCard = styled.li`
+const StyledTrendingCard = styled(motion.li)`
   width: 470px;
   height: 230px;
   margin-right: 40px;
@@ -151,22 +151,23 @@ const CardTitle = styled.span`
 function TrendingCard({ cardData, index }) {
   const { isBookmarked, year, category, rating, title } = cardData;
   const { trending } = cardData.thumbnail;
-  const cardRef = useRef(null);
+  const controls = useAnimation();
 
+  const slideWidth = "";
   useEffect(() => {
-    const slideWidth = cardRef.current.offsetWidth;
-
-    anime({
-      targets: cardRef.current,
-      translateX: [-slideWidth, 0],
-      opacity: [0, 1],
-      easing: "easeOutExpo",
-      duration: 1000,
+    controls.start({
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
     });
-  }, []);
+  }, [controls]);
 
   return (
-    <StyledTrendingCard ref={cardRef} key={index}>
+    <StyledTrendingCard
+      key={index}
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={controls}
+    >
       <CardContainer>
         <CardThumbnailContainer>
           <CardThumbnail src={trending.large} alt="" />

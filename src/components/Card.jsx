@@ -1,13 +1,18 @@
-/* eslint-disable react/prop-types */
-import { useEffect, useRef } from "react";
-import anime from "animejs";
 import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
 
 import { media } from "../Styled-components/GlobalStyles";
 import { ReactComponent as MovieSvg } from "../assets/icon-category-movie.svg";
 import { ReactComponent as SerieSvg } from "../assets/icon-category-tv.svg";
 import { ReactComponent as IconPlay } from "../assets/icon-play.svg";
 import SaveBookmark from "../components/SaveBookmark";
+
+const StyledCard = styled(motion.li)`
+  max-width: 280px;
+  max-height: 226px;
+  overflow: hidden;
+  cursor: pointer;
+`;
 
 const commonThumbnailStyles = css`
   width: 100%;
@@ -16,14 +21,6 @@ const commonThumbnailStyles = css`
   max-height: 174px;
   border-radius: 8px;
 `;
-
-const StyledCard = styled.li`
-  max-width: 280px;
-  max-height: 226px;
-  overflow: hidden;
-  cursor: pointer;
-`;
-
 const CardContainer = styled.div`
   height: 226px;
   position: relative;
@@ -128,22 +125,14 @@ const CardTitle = styled.span`
 function Card({ cardData, cardIndex }) {
   const { isBookmarked, year, category, rating, title } = cardData;
   const { regular } = cardData.thumbnail;
-  const cardRef = useRef(null);
-
-  useEffect(() => {
-    const cardElement = cardRef.current;
-
-    anime({
-      targets: cardElement,
-      opacity: [0, 1],
-      translateY: [100, 0],
-      delay: anime.stagger(100),
-      easing: "easeOutExpo",
-    });
-  }, []);
 
   return (
-    <StyledCard ref={cardRef} key={cardIndex}>
+    <StyledCard
+      key={cardIndex}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: cardIndex * 0.1 }}
+    >
       <CardContainer>
         <CardThumbnailContainer>
           <CardThumbnail src={regular.small} alt="CardThumbnail" />

@@ -1,11 +1,12 @@
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { useAuth } from "../context/Auth";
 import { media } from "../Styled-components/GlobalStyles";
 import imgAvatar from "../assets/image-avatar.png";
 import imgAnonymous from "../assets/favicon-32x32.png";
-import { useState } from "react";
 
 const StyledUser = styled.div`
   position: relative;
@@ -28,7 +29,7 @@ const StyledUser = styled.div`
 
     ${media.phone} {
       left: -154px;
-      top: 62px;
+      top: 58px;
     }
 
     button {
@@ -41,6 +42,7 @@ const StyledUser = styled.div`
     }
   }
 `;
+
 const AvatarImg = styled.img`
   width: 40px;
   height: 40px;
@@ -52,6 +54,7 @@ const AvatarImg = styled.img`
     height: 30px;
   }
 `;
+
 function User() {
   const { user, logOut } = useAuth();
   const email = user?.email;
@@ -87,18 +90,25 @@ function User() {
         </Link>
       )}
 
-      {visible && (
-        <div className="popup">
-          {email ? (
-            <button onClick={handleLogOut}>Logout</button>
-          ) : (
-            <>
-              <button onClick={handleLogIn}>Login</button>
-              <button onClick={handleSignUp}>Sign Up</button>
-            </>
-          )}
-        </div>
-      )}
+      <AnimatePresence>
+        {visible && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="popup"
+          >
+            {email ? (
+              <button onClick={handleLogOut}>Logout</button>
+            ) : (
+              <>
+                <button onClick={handleLogIn}>Login</button>
+                <button onClick={handleSignUp}>Sign Up</button>
+              </>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </StyledUser>
   );
 }
