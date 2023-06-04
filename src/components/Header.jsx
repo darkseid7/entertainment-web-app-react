@@ -7,7 +7,7 @@ import { ReactComponent as IconNavHome } from "../assets/icon-nav-home.svg";
 import { ReactComponent as IconNavMovies } from "../assets/icon-nav-movies.svg";
 import { ReactComponent as IconNavSeries } from "../assets/icon-nav-tv-series.svg";
 import { ReactComponent as IconNavBookmark } from "../assets/icon-nav-bookmark.svg";
-import imgAvatar from "../assets/image-avatar.png";
+import User from "./User";
 
 import { media } from "../Styled-components/GlobalStyles";
 
@@ -27,9 +27,11 @@ const StyledHeader = styled.header`
 
   ${media.phone} {
     width: 100%;
-
     padding: 16px;
     border-radius: 0;
+    position: fixed;
+    top: 0px;
+    z-index: 1000;
   }
 `;
 
@@ -118,21 +120,9 @@ const StyledSvg = styled.svg`
   height: 20px;
 `;
 
-const StyledAvatarImg = styled.img`
-  width: 40px;
-  height: 40px;
-  border: 1px solid white;
-  border-radius: 50%;
-
-  ${media.phone} {
-    width: 30px;
-    height: 30px;
-  }
-`;
-
 function Header() {
-  const user = useAuth();
-  console.log(user);
+  const { user } = useAuth();
+  const email = user?.email;
   return (
     <StyledHeader>
       <StyledNav>
@@ -157,18 +147,16 @@ function Header() {
               <IconNavSeries />
             </StyledSvg>
           </NavLink>
-          {/* {login && (
+          {email && (
             <NavLink to={"/bookmarked"}>
               <StyledSvg>
                 <IconNavBookmark />
               </StyledSvg>
             </NavLink>
-          )} */}
+          )}
         </IconsContainer>
         <IconsContainer>
-          <Link to="/signup">
-            <StyledAvatarImg src={imgAvatar} alt="" />
-          </Link>
+          <User />
         </IconsContainer>
       </StyledNav>
     </StyledHeader>

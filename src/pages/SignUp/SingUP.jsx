@@ -69,7 +69,7 @@ function SingUP() {
           <IconNavLogo />
         </Logo>
         <LoginCard>
-          <StyledTitle>Login</StyledTitle>
+          <StyledTitle>Sign Up</StyledTitle>
           <Form buttonText={"Create an account"} isSignUp />
           <LoginText>
             Already have an account? <Link to="/login">Login</Link>

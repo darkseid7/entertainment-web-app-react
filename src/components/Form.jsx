@@ -59,7 +59,7 @@ const ErrorMessage = styled.span`
 `;
 
 function Form({ buttonText, isSignUp }) {
-  const { signUp } = useAuth();
+  const { signUp, logIn, user } = useAuth();
   const navigate = useNavigate();
   const [visible, setVisible] = useState(true);
 
@@ -74,6 +74,7 @@ function Form({ buttonText, isSignUp }) {
     password: "",
     repeatPassword: "",
     failedRegister: "",
+    failedLogin: "",
   });
 
   const handleInputChange = (e) => {
@@ -84,7 +85,7 @@ function Form({ buttonText, isSignUp }) {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     const { email, password, repeatPassword } = formData;
     let formIsValid = true;
@@ -116,8 +117,14 @@ function Form({ buttonText, isSignUp }) {
         await signUp(formData.email, formData.password);
         navigate("/");
       } catch (error) {
-        newErrors.failedRegister = error.message;
-        console.log(newErrors.failedRegister);
+        console.log(error.code);
+        if (error.code === "auth/weak-password") {
+          newErrors.failedRegister = "Password should be at least 6 characters";
+        } else if (error.code === "auth/invalid-email") {
+          newErrors.failedRegister = "Invalid Email";
+        } else if (error.code === "auth/email-already-in-use") {
+          newErrors.failedRegister = "Email already in use";
+        }
         setVisible(true);
       }
     }
@@ -125,8 +132,30 @@ function Form({ buttonText, isSignUp }) {
     setErrors(newErrors);
   };
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const newErrors = {
+      email: "",
+      password: "",
+      failedLogin: "",
+    };
+
+    try {
+      await logIn(formData.email, formData.password);
+      navigate("/home");
+    } catch (error) {
+      console.log(error.code);
+      if (error.code === "auth/user-not-found") {
+        newErrors.failedLogin = "User not found";
+      }
+      setVisible(true);
+    }
+    setErrors(newErrors);
+  };
+
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm onSubmit={isSignUp ? handleSignUp : handleLogin}>
       <InputContainer>
         <Input
           onChange={handleInputChange}
@@ -164,6 +193,13 @@ function Form({ buttonText, isSignUp }) {
           visible={visible}
           setVisible={setVisible}
           text={errors.failedRegister}
+        />
+      )}
+      {errors.failedLogin && (
+        <AlertMessage
+          visible={visible}
+          setVisible={setVisible}
+          text={errors.failedLogin}
         />
       )}
     </StyledForm>
