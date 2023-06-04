@@ -10,6 +10,7 @@ import imgAnonymous from "../assets/favicon-32x32.png";
 
 const StyledUser = styled.div`
   position: relative;
+  cursor: pointer;
   .popup {
     width: 200px;
     padding: 18px;
@@ -81,13 +82,9 @@ function User() {
   return (
     <StyledUser>
       {email ? (
-        <Link onClick={handleShow}>
-          <AvatarImg src={imgAvatar} alt="" />
-        </Link>
+        <AvatarImg src={imgAvatar} onClick={handleShow} alt="" />
       ) : (
-        <Link onClick={handleShow}>
-          <AvatarImg src={imgAnonymous} alt="" />
-        </Link>
+        <AvatarImg src={imgAnonymous} onClick={handleShow} alt="" />
       )}
 
       <AnimatePresence>
