@@ -24,7 +24,13 @@ function BookMarkedSeries() {
   return (
     <>
       <StyledBookmarkedSeries>
-        <StyledTitle>Bookmarked TV Series</StyledTitle>
+        <StyledTitle
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          Bookmarked TV Series
+        </StyledTitle>
         <CardList>
           {movies.map((cardData, cardIndex) => (
             <Card key={cardIndex} cardData={cardData} />

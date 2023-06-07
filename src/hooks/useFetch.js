@@ -11,11 +11,12 @@ const useFetch = () => {
         .then((response) => response.json())
         .then((data) => {
           const adapted = dataAdapter(data);
-          console.log(adapted);
           setData(adapted);
         })
         .finally(() => {
-          setLoading(false);
+          setTimeout(() => {
+            setLoading(false);
+          }, 3000);
         });
     };
     getData();

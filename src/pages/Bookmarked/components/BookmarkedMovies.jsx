@@ -13,7 +13,13 @@ function BookmarkedMovies() {
 
   return (
     <>
-      <StyledTitle>Bookmarked Movies</StyledTitle>
+      <StyledTitle
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        Bookmarked Movies
+      </StyledTitle>
       <CardList>
         {movies.map((cardData, cardIndex) => (
           <Card key={cardIndex} cardData={cardData} />

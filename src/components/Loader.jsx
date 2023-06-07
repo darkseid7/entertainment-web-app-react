@@ -1,14 +1,8 @@
-import React, { useEffect, useRef } from "react";
-import styled, { keyframes } from "styled-components";
-import anime from "animejs";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import { ReactComponent as IconNavLogo } from "../assets/logo.svg";
 
-const spinAnimation = keyframes`
-    to {
-        transform: rotate(360deg);
-    }
-`;
-
-const LoaderContainer = styled.div`
+const LoaderContainer = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,37 +11,21 @@ const LoaderContainer = styled.div`
   overflow: hidden;
 `;
 
-const Spinner = styled.div`
-  width: 50px;
-  height: 50px;
-  border: 6px solid #161d2f;
-  border-top-color: #fc4747;
-  border-radius: 50%;
-  animation: ${spinAnimation} 1s linear infinite;
-`;
-
 function Loader() {
-  const spinner = useRef(null);
-  useEffect(() => {
-    anime({
-      targets: spinner.current,
-      opacity: [0, 1],
-      duration: 1000,
-      complete: () => {
-        anime({
-          targets: spinner.current,
-          rotate: "1turn",
-          easing: "linear",
-          loop: true,
-        });
-      },
-    });
-  }, []);
-
   return (
-    <LoaderContainer>
-      <Spinner ref={spinner} />
-    </LoaderContainer>
+    <>
+      <LoaderContainer>
+        <motion.div
+          initial={{ scale: 2 }}
+          animate={{
+            scale: [2, 2.2, 2],
+            transition: { duration: 1.5, repeat: Infinity, ease: "easeInOut" },
+          }}
+        >
+          <IconNavLogo />
+        </motion.div>
+      </LoaderContainer>
+    </>
   );
 }
 

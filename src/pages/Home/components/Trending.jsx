@@ -29,7 +29,13 @@ function Trending() {
 
   return (
     <StyledTrending>
-      <StyledTitle>Trending</StyledTitle>
+      <StyledTitle
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        Trending
+      </StyledTitle>
       <TrendingCards>
         {getTrending.map((cardData, cardIndex) => (
           <TrendingCard key={cardIndex} cardData={cardData} />

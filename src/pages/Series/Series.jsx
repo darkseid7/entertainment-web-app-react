@@ -5,7 +5,13 @@ import { StyledTitle } from "../../Styled-components/Title";
 export default function Series() {
   return (
     <>
-      <StyledTitle>TV Series</StyledTitle>
+      <StyledTitle
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        TV Series
+      </StyledTitle>
       <SeriesFilter />
     </>
   );
