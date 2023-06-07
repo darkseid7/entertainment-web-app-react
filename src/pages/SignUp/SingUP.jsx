@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
+
 import { GlobalStyles } from "../../Styled-components/GlobalStyles";
 
 import { ReactComponent as IconNavLogo } from "../../assets/logo.svg";
@@ -7,7 +9,7 @@ import { StyledTitle } from "../../Styled-components/Title";
 import { media } from "../../Styled-components/GlobalStyles";
 import Form from "../../components/Form";
 
-const StyledSignUp = styled.main`
+const StyledSignUp = styled(motion.main)`
   display: grid;
   place-items: center;
   height: 100%;
@@ -64,7 +66,10 @@ function SingUP() {
   return (
     <>
       <GlobalStyles />
-      <StyledSignUp>
+      <StyledSignUp
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
         <Logo>
           <IconNavLogo />
         </Logo>

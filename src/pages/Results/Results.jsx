@@ -1,5 +1,7 @@
-import { useParams, useNavigate, useSearchParams } from "react-router-dom";
+/* eslint-disable react/no-unescaped-entities */
+import { useParams } from "react-router-dom";
 
+import { StyledTitle } from "../../Styled-components/Title";
 import CardList from "../../components/CardList";
 import Card from "../../components/Card";
 import useFetch from "../../hooks/useFetch";
@@ -14,11 +16,20 @@ function Results() {
   });
 
   return (
-    <CardList>
-      {filteredData.map((cardData, cardIndex) => (
-        <Card key={cardIndex} cardData={cardData} />
-      ))}
-    </CardList>
+    <>
+      <StyledTitle
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        Found {filteredData.length} results for "{title}"
+      </StyledTitle>
+      <CardList>
+        {filteredData.map((cardData, cardIndex) => (
+          <Card key={cardIndex} cardData={cardData} />
+        ))}
+      </CardList>
+    </>
   );
 }
 

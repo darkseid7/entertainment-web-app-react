@@ -89,6 +89,7 @@ function Form({ buttonText, isSignUp }) {
     e.preventDefault();
     const { email, password, repeatPassword } = formData;
     let formIsValid = true;
+    setVisible(false);
 
     const newErrors = {
       email: "",
@@ -134,6 +135,7 @@ function Form({ buttonText, isSignUp }) {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setVisible(false);
 
     const newErrors = {
       email: "",
@@ -148,6 +150,12 @@ function Form({ buttonText, isSignUp }) {
       console.log(error.code);
       if (error.code === "auth/user-not-found") {
         newErrors.failedLogin = "User not found";
+      } else if (error.code === "auth/wrong-password") {
+        newErrors.failedLogin = "Wrong password";
+      } else if (error.code === "auth/invalid-email") {
+        newErrors.failedLogin = "Invalid Email";
+      } else if (error.code === "auth/too-many-requests") {
+        newErrors.failedLogin = "Too many requests";
       }
       setVisible(true);
     }

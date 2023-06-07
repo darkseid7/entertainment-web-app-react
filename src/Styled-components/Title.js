@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 import { media, paddingRight } from "./GlobalStyles";
 
-export const StyledTitle = styled.h2`
+export const StyledTitle = styled(motion.h2)`
   margin-bottom: 32px;
   padding-right: ${paddingRight};
   font-size: 32px;

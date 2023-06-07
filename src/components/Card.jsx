@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 

@@ -1,5 +1,6 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 import { useAuth } from "../context/Auth";
 import { ReactComponent as IconNavLogo } from "../assets/logo.svg";
@@ -110,12 +111,12 @@ const IconsContainer = styled.div`
   }
 `;
 
-const StyledHomeSvg = styled.svg`
+const StyledHomeSvg = styled(motion.svg)`
   width: 33px;
   height: 25.6px;
 `;
 
-const StyledSvg = styled.svg`
+const StyledSvg = styled(motion.svg)`
   width: 20px;
   height: 20px;
 `;
@@ -127,29 +128,41 @@ function Header() {
     <StyledHeader>
       <StyledNav>
         <NavLink to={"/"}>
-          <StyledHomeSvg>
+          <StyledHomeSvg whileHover={{ scale: 1.1, rotate: -10 }}>
             <IconNavLogo />
           </StyledHomeSvg>
         </NavLink>
         <IconsContainer>
           <NavLink to={"/home"}>
-            <StyledSvg>
+            <StyledSvg
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
               <IconNavHome />
             </StyledSvg>
           </NavLink>
           <NavLink to={"/movies"}>
-            <StyledSvg>
+            <StyledSvg
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
               <IconNavMovies />
             </StyledSvg>
           </NavLink>
           <NavLink to={"/series"}>
-            <StyledSvg>
+            <StyledSvg
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
               <IconNavSeries />
             </StyledSvg>
           </NavLink>
           {email && (
             <NavLink to={"/bookmarked"}>
-              <StyledSvg>
+              <StyledSvg
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
                 <IconNavBookmark />
               </StyledSvg>
             </NavLink>
